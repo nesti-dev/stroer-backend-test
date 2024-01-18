@@ -4,22 +4,15 @@ const redis = require('redis');
 class RedisService {
     constructor() {
         this.client = redis.createClient();
+        this.client.connect();
     }
 
-    async connectClient() {
-        await this.client.connect()
-    }
-
-    async disconnectClient() {
-        await this.client.disconnect()
-    }
-
-    async incrementCount(count) {
-        this.connectClient()
-
+    async incrementCountBy(count) {
         await this.client.incrBy('count', parseInt(count));
+    }
 
-        this.disconnectClient()
+    async getCount(){
+        return await (this.client.get('count'));
     }
 }
 

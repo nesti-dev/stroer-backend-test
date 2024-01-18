@@ -16,7 +16,7 @@ router.post('/', async function(req, res, next) {
   fileService.save(data)
 
   if (data.count) {
-    await redisService.incrementCount(data.count)
+    await redisService.incrementCountBy(data.count)
   }
 
   res.send({'status': 'OK'})
