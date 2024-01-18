@@ -2,18 +2,25 @@ const express = require('express');
 const router = express.Router();
 
 const FileService = require("../services/file");
+const RedisService = require("../services/redis");
 
 
 const fileService = new FileService('data.json')
+const redisService = new RedisService()
 
 
 /* POST track data. */
-router.post('/', function(req, res, next) {
+router.post('/', async function(req, res, next) {
   const data = req.body
 
-  fileService.save(JSON.stringify(data))
+  fileService.save(data)
+
+  if (data.count) {
+    await redisService.incrementCount(data.count)
+  }
 
   res.send({'status': 'OK'})
 });
+
 
 module.exports = router;
