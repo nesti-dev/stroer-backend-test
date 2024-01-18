@@ -3,7 +3,7 @@ require('dotenv').config()
 const fs = require('fs');
 
 
-DATA_FILENAME = process.env.DATA_FILENAME || 'data.json'
+DATA_FILENAME = process.env.DATA_FILENAME || 'data.json';
 
 
 class FileService {

@@ -17,11 +17,12 @@ class RedisService {
 
     async incrementCountBy(count) {
         await this.client.incrByFloat('count', count);
-        return await this.getCount()
+        return await this.getCount();
     }
 
     async getCount(){
-        return await (this.client.get('count'));
+        const count = await this.client.get('count');
+        return count !== null ? count : 0;
     }
 }
 
