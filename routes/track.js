@@ -16,10 +16,15 @@ router.post('/', async function(req, res, next) {
   fileService.save(data)
 
   if (data.count) {
-    await redisService.incrementCountBy(data.count)
+    if (isNaN(data.count)) {
+      return res.status(400).send({'error': 'count is not a number'})
+    }
+    const count = await redisService.incrementCountBy(data.count)
+
+    return res.send({'count': count})
   }
 
-  res.send({'status': 'OK'})
+  return res.send({'status': 'OK'})
 });
 
 

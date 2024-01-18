@@ -16,7 +16,8 @@ class RedisService {
     }
 
     async incrementCountBy(count) {
-        await this.client.incrBy('count', parseInt(count));
+        await this.client.incrByFloat('count', count);
+        return await this.getCount()
     }
 
     async getCount(){
