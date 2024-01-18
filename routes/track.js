@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-const FileService = require("../services/file");
-const RedisService = require("../services/redis");
+const FileService = require('../services/file');
+const RedisService = require('../services/redis');
 
 
-const fileService = new FileService('data.json')
+const fileService = new FileService()
 const redisService = new RedisService()
 
 

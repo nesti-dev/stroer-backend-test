@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const RedisService = require("../services/redis");
+const RedisService = require('../services/redis');
 
 
 const redisService = new RedisService()
