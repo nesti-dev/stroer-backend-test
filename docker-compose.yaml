@@ -1,0 +1,16 @@
+version: "3"
+services:
+  app:
+    container_name: "stroer-backend-test-app"
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOST=stroer-backend-test-redis
+  redis:
+    container_name: "stroer-backend-test-redis"
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
